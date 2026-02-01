@@ -49,4 +49,4 @@ jobs:
             --set todoapp.values.secrets.DB_HOST="${{secrets.DB_HOST}}" \
             --set todoapp.values.mysql.secrets.MYSQL_ROOT_PASSWORD="${{secrets.MYSQL_ROOT_PASSWORD}}" \
             --set todoapp.values.mysql.secrets.MYSQL_USER="${{secrets.MYSQL_USER}}" \
-            --set todoapp.values.mysql.secrets.MYSQL_PASSWORD="${{secrets.MYSQL_PASSWORD}}" \
+            --set todoapp.values.mysql.secrets.MYSQL_PASSWORD="${{secrets.MYSQL_PASSWORD}}"
