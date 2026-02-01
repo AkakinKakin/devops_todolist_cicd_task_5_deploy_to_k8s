@@ -37,13 +37,12 @@ jobs:
           with:
             config: cluster.yaml
 
-        - name: Helm Deploy
+        - name: Helm Dry Run
           run: |
             helm upgrade --install todoapp ./todoapp-${{ inputs.version }}*.tgz \
-            --atomic \
-            --wait \
-            --timeout 3600s \
+            --dry-run \
             --debug \
+            --timeout 3600s \
             --set image.tag=${{ inputs.version }} \
             -f ${{ inputs.path-to-values }} \
             --set todoapp.values.secrets.SECRET_KEY="${{ secrets.SECRET_KEY }}" \
