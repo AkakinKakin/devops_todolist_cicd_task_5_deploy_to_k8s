@@ -53,3 +53,21 @@ jobs:
             --set todoapp.values.mysql.secrets.MYSQL_ROOT_PASSWORD="${{ secrets.MYSQL_ROOT_PASSWORD }}" \
             --set todoapp.values.mysql.secrets.MYSQL_USER="${{ secrets.MYSQL_USER }}" \
             --set todoapp.values.mysql.secrets.MYSQL_PASSWORD="${{ secrets.MYSQL_PASSWORD }}"
+
+        - name: Helm Deploy
+          run: |
+            helm upgrade --install todoapp ./todoapp-${{ inputs.version }}*.tgz \
+            --atomic \
+            --wait \
+            --timeout 3600s \
+            --debug \
+            --set image.tag=${{ inputs.version }} \
+            -f ${{ inputs.path-to-values }} \
+            --set todoapp.values.secrets.SECRET_KEY="${{ secrets.SECRET_KEY }}" \
+            --set todoapp.values.secrets.DB_NAME="${{ secrets.DB_NAME }}" \
+            --set todoapp.values.secrets.DB_USER="${{ secrets.DB_USER }}" \
+            --set todoapp.values.secrets.DB_PASSWORD="${{ secrets.DB_PASSWORD }}" \
+            --set todoapp.values.secrets.DB_HOST="${{ secrets.DB_HOST }}" \
+            --set todoapp.values.mysql.secrets.MYSQL_ROOT_PASSWORD="${{ secrets.MYSQL_ROOT_PASSWORD }}" \
+            --set todoapp.values.mysql.secrets.MYSQL_USER="${{ secrets.MYSQL_USER }}" \
+            --set todoapp.values.mysql.secrets.MYSQL_PASSWORD="${{ secrets.MYSQL_PASSWORD }}"
